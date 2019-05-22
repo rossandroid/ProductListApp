@@ -73,11 +73,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         GridLayoutManager mGLM = new GridLayoutManager(this, numberOfColumns);
         recyclerView.setLayoutManager(mGLM);
-      //  DividerItemDecoration div = new DividerItemDecoration(recyclerView.getContext(), mGLM.getOrientation());
-       // recyclerView.addItemDecoration(div);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        getSupportActionBar().setTitle("NEW THIS WEEK");
 
     }
 

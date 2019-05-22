@@ -3,7 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:showDividers="middle"
+    android:divider="?android:listDivider"
+    android:dividerPadding="8dp"
+    android:background="@drawable/shape_header">
 
     <Spinner
         android:id="@+id/spinner5"
