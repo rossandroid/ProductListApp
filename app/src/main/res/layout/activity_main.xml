@@ -8,6 +8,44 @@
     android:background="@android:color/white"
     tools:context=".main.MainActivity">
 
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/banner_delivery"
+        app:layout_constraintTop_toTopOf="@+id/spinner">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/header_spinners"></include>
+
+            <TextView
+                android:id="@+id/item_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="50 items" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/r_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/spinner"
+                app:layout_constraintVertical_bias="0.0">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
     <ProgressBar
         android:id="@+id/spinner"
         style="?android:attr/progressBarStyle"
@@ -32,21 +70,8 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/r_list"
-        android:layout_width="0dp"
-        android:layout_height="410dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.0">
-
-    </android.support.v7.widget.RecyclerView>
-
     <LinearLayout
+        android:id="@+id/banner_delivery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#e1e1e1"
@@ -58,18 +83,20 @@
             android:id="@+id/text_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:layout_weight="1"
-            android:textSize="18dp"
-            android:gravity="center"
-            android:text="FREE UK DELIVERY ON ALL ORDERS OVER £150 | FREE UK RETURNS" />
+            android:text="FREE UK DELIVERY ON ALL ORDERS OVER £150 | FREE UK RETURNS"
+            android:textSize="18dp" />
 
         <Button
+            android:id="@+id/close_banner"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/ic_close_black_24dp" />
+            android:background="@drawable/ic_close_black_24dp"
+            android:onClick="closeBanner" />
 
     </LinearLayout>
 
