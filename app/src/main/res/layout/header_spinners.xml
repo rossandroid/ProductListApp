@@ -7,7 +7,9 @@
     android:showDividers="middle"
     android:divider="?android:listDivider"
     android:dividerPadding="8dp"
-    android:background="@drawable/shape_header">
+    android:id="@+id/header_spinner"
+    android:background="@drawable/shape_header"
+    tools:showIn="@layout/activity_main">
 
     <Spinner
         android:id="@+id/spinner5"

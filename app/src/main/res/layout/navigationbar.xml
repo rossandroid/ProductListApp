@@ -1,0 +1,12 @@
+<android.support.design.widget.BottomNavigationView android:id="@+id/navigation"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="?android:attr/windowBackground"
+    app:itemBackground="?attr/colorBackgroundFloating"
+    app:itemIconTint="?attr/textColorAlertDialogListItem"
+    app:menu="@menu/navigation"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="@layout/activity_main"
+    xmlns:tools="http://schemas.android.com/tools" />

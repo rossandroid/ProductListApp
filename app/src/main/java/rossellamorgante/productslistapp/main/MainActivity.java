@@ -8,11 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,6 +32,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private List<Product> mList=new ArrayList<>();
     private MainAdapter mAdapter;
     private int numberOfColumns=2;
+
+    //ANIMATION
+    private int mPos=0;
+    private int mCounter=0;
+    private int magic_swap=-140;
+    private int mCounterCondition=0;
+    private int mSwapContition=1;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -63,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mMP = new MainPresenter(this);
         mMP.getListProdct();
 
+
         recyclerView = (RecyclerView) findViewById(R.id.r_list);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
@@ -74,12 +86,44 @@ public class MainActivity extends AppCompatActivity implements MainView {
         GridLayoutManager mGLM = new GridLayoutManager(this, numberOfColumns);
         recyclerView.setLayoutManager(mGLM);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+       // BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+//        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         getSupportActionBar().setTitle("NEW THIS WEEK");
 
+
+
+        ((NestedScrollView)findViewById(R.id.scroll_content)).getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+
+            @Override
+            public void onScrollChanged() {
+
+                int swap = mPos-((NestedScrollView)findViewById(R.id.scroll_content)).getScrollY();
+
+                mCounter+=swap;
+
+                if(swap>mSwapContition){
+                    mCounter=0;
+                    Log.i("SCROL","c>0 ");
+                    (findViewById(R.id.header_spinner)).animate().translationY(mCounter);
+                    (findViewById(R.id.scroll_content)).animate().translationY(mCounter);
+                }
+
+                if(mCounter<mCounterCondition){
+                    (findViewById(R.id.header_spinner)).animate().translationY(magic_swap);
+                    (findViewById(R.id.scroll_content)).animate().translationY(magic_swap);
+                }
+
+                mPos=((NestedScrollView)findViewById(R.id.scroll_content)).getScrollY();;
+
+            }
+
+
+
+        });
+
     }
+
 
     public void closeBanner(View v){
         ((LinearLayout)findViewById(R.id.banner_delivery)).setVisibility(View.GONE);
