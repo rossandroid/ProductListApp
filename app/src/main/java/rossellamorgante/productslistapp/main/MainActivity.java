@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
         GridLayoutManager mGLM = new GridLayoutManager(this, numberOfColumns);
         recyclerView.setLayoutManager(mGLM);
 
-       // BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-//        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         getSupportActionBar().setTitle("NEW THIS WEEK");
 
@@ -115,10 +115,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 }
 
                 mPos=((NestedScrollView)findViewById(R.id.scroll_content)).getScrollY();;
-
             }
-
-
 
         });
 
