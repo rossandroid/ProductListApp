@@ -7,6 +7,7 @@ Demo product listing to implement MVP
 
 * The application based on Android Architecture Components using the MVP pattern
 * The network implementation uses Retrofit2
+* For dependency injection uses Dagger2
 * The response JSON has been parse with GSON
 * Every layer communication with each other via RxJava
 
