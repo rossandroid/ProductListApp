@@ -21,8 +21,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
+
 
 import rossellamorgante.productslistapp.R;
+//import rossellamorgante.productslistapp.main.dag.AdapterComponent;
+import rossellamorgante.productslistapp.main.dag.AdapterComponent;
+import rossellamorgante.productslistapp.main.dag.DaggerAdapterComponent;
 import rossellamorgante.productslistapp.model.Product;
 
 public class MainActivity extends AppCompatActivity implements MainView {
@@ -30,8 +35,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private MainPresenter mMP;
     private RecyclerView recyclerView;
     private List<Product> mList=new ArrayList<>();
-    private MainAdapter mAdapter;
+
+    @Inject
+    MainAdapter mAdapter;
+
     private int numberOfColumns=2;
+
 
     //ANIMATION
     private int mPos=0;
@@ -79,7 +88,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
         // Create the Adapter for Recycleview
-        mAdapter = new MainAdapter(mList);
+        AdapterComponent ac = DaggerAdapterComponent.create();
+        ac.inject(this);
+        mAdapter.setListProduct(mList);
+
+
         // Set the Adapter to Recycleview
         recyclerView.setAdapter(mAdapter);
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));

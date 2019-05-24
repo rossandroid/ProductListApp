@@ -16,6 +16,8 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import rossellamorgante.productslistapp.R;
 import rossellamorgante.productslistapp.model.Product;
 import rossellamorgante.productslistapp.model.ProductsList;
@@ -24,9 +26,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     private List<Product> mProduct;
 
-    public MainAdapter(List<Product> data) {
+    @Inject
+    public MainAdapter() {
+
+
+    }
+
+    public void setListProduct(List<Product> data){
         this.mProduct = data;
     }
+
 
     @NonNull
     @Override
